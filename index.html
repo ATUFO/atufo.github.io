@@ -155,6 +155,211 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-安装bbr-加速网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/%E5%AE%89%E8%A3%85bbr-%E5%8A%A0%E9%80%9F%E7%BD%91%E7%BB%9C/">安装bbr,加速网络</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/04/%E5%AE%89%E8%A3%85bbr-%E5%8A%A0%E9%80%9F%E7%BD%91%E7%BB%9C/" class="archive-article-date">
+  	<time datetime="2019-12-04T00:11:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.bwgyhw.cn/bandwagonhost-bbr-speed-up/" target="_blank" rel="noopener">来源</a></p>
+<h2 id="什么是bbr"><a href="#什么是bbr" class="headerlink" title="什么是bbr"></a><strong>什么是bbr</strong></h2><p>bbr是谷歌开源的一个TCP拥塞控制算法，并且完全开源，谷歌bbr项目地址：<a href="https://github.com/google/bbr。" target="_blank" rel="noopener">https://github.com/google/bbr。</a></p>
+<p>bbr的目的就是尽量跑满带宽，通过控制算法，将带宽利用到最大，并且已经提交至Linux内核，开启非常方便，项目也一直在维护调优，加速效果好，稳定。</p>
+<h2 id="搬瓦工自带bbr的系统"><a href="#搬瓦工自带bbr的系统" class="headerlink" title="搬瓦工自带bbr的系统"></a><strong>搬瓦工自带bbr的系统</strong></h2><p><strong>搬瓦工的默认系统是自带bbr加速的</strong>，也就是说如果你新买了一台搬瓦工vps，那么你的搬瓦工是默认自带bbr的。查看你的搬瓦工vps是什么系统，可以在kiwivm控制面板里的Main controls里查看，搬瓦工如何登陆kiwivm查看本站之前的教程：</p>
+<blockquote>
+<p><a href="https://www.bwgyhw.cn/bandwagonhost-kiwivm-control-panel-login/" target="_blank" rel="noopener">搬瓦工如何登陆到kiwivm控制面板</a></p>
+</blockquote>
+<p>如果你的系统是不带bbr的，你也可以简单的切换系统到自带bbr的系统，搬瓦工如何切换系统可以查看本站之前的教程：</p>
+<blockquote>
+<p><a href="https://www.bwgyhw.cn/bandwagonhost-how-to-change-os/" target="_blank" rel="noopener">如何查看搬瓦工VPS的系统？如何更换搬瓦工系统版本？</a></p>
+</blockquote>
+<p>搬瓦工自带bbr的系统有centos 6和centos 7，如下图所示，系统名称后面有<strong>-bbr后缀</strong>的则表示为自带bbr加速的系统：</p>
+<p><img src="https://www.bwgyhw.cn/wp-content/uploads/2018/09/bandwagonhost-install-os.png" alt="搬瓦工修改系统版本"></p>
+<h2 id="搬瓦工一键开启bbr"><a href="#搬瓦工一键开启bbr" class="headerlink" title="搬瓦工一键开启bbr"></a><strong>搬瓦工一键开启bbr</strong></h2><p>如果你的搬瓦工系统不是自带bbr的，那么也可以一键开启bbr加速。开启bbr加速前，请确认你的搬瓦工架构是kvm的，因为bbr加速是内核加速，只支持kvm，kvm与ovz的区别可以参考：</p>
+<blockquote>
+<p><a href="https://www.bwgyhw.cn/bandwagonhost-ovz-kvm-comparison/" target="_blank" rel="noopener">搬瓦工OVZ(OpenVZ)与KVM区别，两者应该选哪个好</a></p>
+</blockquote>
+<p>ssh登陆搬瓦工vps后，运行以下脚本即可升级系统并开启bbr加速（因为bbr只有高版本的LInux内核才支持，所以这个脚本会先下载最新内核之后再开启bbr加速）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate https:&#x2F;&#x2F;github.com&#x2F;teddysun&#x2F;across&#x2F;raw&#x2F;master&#x2F;bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; .&#x2F;bbr.sh</span></pre></td></tr></table></figure>
+
+<p>升级内核并开启bbr加速后，会提示重启系统，输入y即可（或者之后用reboot命令重启你的搬瓦工vps），重启完毕后，你的搬瓦工vps就成功开启bbr加速了，查看是否成功开启，可以执行如下命令（需要重新ssh登陆你的搬瓦工vps）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_available_congestion_control</span></pre></td></tr></table></figure>
+
+<p>如果返回值里有bbr就表示成功开启了，形如（只要后面有bbr就可以）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net.ipv4.tcp_available_congestion_control &#x3D; reno cubic bbr</span></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">v2ray bbr</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/04/%E5%AE%89%E8%A3%85bbr-%E5%8A%A0%E9%80%9F%E7%BD%91%E7%BB%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-安装V2ray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/%E5%AE%89%E8%A3%85V2ray/">安装V2ray</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/04/%E5%AE%89%E8%A3%85V2ray/" class="archive-article-date">
+  	<time datetime="2019-12-04T00:06:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/233boy/v2ray/wiki/V2Ray%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC" target="_blank" rel="noopener">来源</a></p>
+<h3 id="安装或卸载"><a href="#安装或卸载" class="headerlink" title="安装或卸载"></a>安装或卸载</h3><blockquote>
+<p>温馨提醒，此脚本默认屏蔽一些不友好的网站！(仅限轮子相关)</p>
+</blockquote>
+<p>要求：Ubuntu 16+ / Debian 8+ / CentOS 7+ 系统<br>推荐使用 Debian 9 系统，脚本会自动启用 BBR 优化。<br>备注：不推荐使用 Debian 8 系统，因为 Caddy 申请证书可能会出现一些莫名其妙的问题<br><strong>我们推荐使用 <a href="https://on.affpass.com/go/bwg" target="_blank" rel="noopener">搬瓦工VPS</a>，稳定，快速，针对中国线路专门优化，无须担心跑路，服务好，并且支持退款。<br>在这里可以找到 <a href="https://233vps.com/post/bandwagonhost-plans/" target="_blank" rel="noopener">搬瓦工 VPS 套餐大全 </a>，优惠码在这里： <a href="https://233vps.com/post/bandwagonhost-coupon-code/" target="_blank" rel="noopener">搬瓦工 VPS 优惠码 </a></strong><br>使用 root 用户输入下面命令安装或卸载</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -s -L https:&#x2F;&#x2F;git.io&#x2F;v2ray.sh)</span></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果提示 curl: command not found ，那是因为你的 VPS 没装 Curl<br>ubuntu/debian 系统安装 Curl 方法: <code>apt-get update -y &amp;&amp; apt-get install curl -y</code><br>centos 系统安装 Curl 方法: <code>yum update -y &amp;&amp; yum install curl -y</code><br>安装好 curl 之后就能安装脚本了</p>
+</blockquote>
+<p>备注：安装完成后，输入 <code>v2ray</code> 即可管理 V2Ray<br>如果提示你的系统不支持此脚本，那么请尝试更换系统</p>
+<h2 id="快速管理"><a href="#快速管理" class="headerlink" title="快速管理"></a>快速管理</h2><p><code>v2ray info</code> 查看 V2Ray 配置信息<br><code>v2ray config</code> 修改 V2Ray 配置<br><code>v2ray link</code> 生成 V2Ray 配置文件链接<br><code>v2ray infolink</code> 生成 V2Ray 配置信息链接<br><code>v2ray qr</code> 生成 V2Ray 配置二维码链接<br><code>v2ray ss</code> 修改 Shadowsocks 配置<br><code>v2ray ssinfo</code> 查看 Shadowsocks 配置信息<br><code>v2ray ssqr</code> 生成 Shadowsocks 配置二维码链接<br><code>v2ray status</code> 查看 V2Ray 运行状态<br><code>v2ray start</code> 启动 V2Ray<br><code>v2ray stop</code> 停止 V2Ray<br><code>v2ray restart</code> 重启 V2Ray<br><code>v2ray log</code> 查看 V2Ray 运行日志<br><code>v2ray update</code> 更新 V2Ray<br><code>v2ray update.sh</code> 更新 V2Ray 管理脚本<br><code>v2ray uninstall</code> 卸载 V2Ray</p>
+<h2 id="配置文件路径"><a href="#配置文件路径" class="headerlink" title="配置文件路径"></a>配置文件路径</h2><p>V2Ray 配置文件路径：/etc/v2ray/config.json<br>Caddy 配置文件路径：/etc/caddy/Caddyfile<br>脚本配置文件路径: /etc/v2ray/233blog_v2ray_backup.conf</p>
+<blockquote>
+<p>警告，请不要修改脚本配置文件，免得出错。。<br>如果你不是有特别的需求，也不要修改 V2Ray 配置文件<br>不过也没事，若你实在想要瞎折腾，出错了的话，你就卸载，然后重装，再出错 ，再卸载，再重装，重复到自己不再想折腾为止。。</p>
+</blockquote>
+<h2 id="WS-TLS-HTTP2"><a href="#WS-TLS-HTTP2" class="headerlink" title="WS+TLS / HTTP2"></a>WS+TLS / HTTP2</h2><p>如果你使用了这两个协议，那么就会使用了脚本自带的 Caddy 集成<br>不管如何，不建议直接去更改 Caddy 的配置：/etc/caddy/Caddyfile<br>如果你需要配置其他网站相关，请将网站的配置文件放到 /etc/caddy/sites 目录下，然后重启 Caddy 进程即可，脚本默认生成的 Caddy 的配置会加载 /etc/caddy/sites 这个目录下的所有配置文件。<br>所以，请将你的网站配置文件放到 /etc/caddy/sites 目录下，完完全全不需要去更改 /etc/caddy/Caddyfile<br>记得重启 Caddy 进程：service caddy restart</p>
+<h2 id="Caddy-插件相关"><a href="#Caddy-插件相关" class="headerlink" title="Caddy 插件相关"></a>Caddy 插件相关</h2><p>本脚本集成了 Caddy，但不集成任何 Caddy 插件，如果你需要安装某些 Caddy 插件，你可以使用官方的 Caddy 安装脚本来一键安装。<br>本人的脚本集成的 Caddy 的安装路径，跟 Caddy 官方的安装脚本是一致的。所以可以直接安装，不会有任何问题</p>
+<p>举个例子，安装包含 http.filebrowser 插件的 Caddy，执行如下命令即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;getcaddy.com | bash -s personal http.filebrowser</span></pre></td></tr></table></figure>
+
+<p>你可以在 <a href="https://caddyserver.com/download" target="_blank" rel="noopener">https://caddyserver.com/download</a> 找到 Caddy 更多插件和安装命令。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>V2Ray 客户端配置文件 SOCKS 监听端口为 <code>2333</code>， HTTP 监听端口为 <code>6666</code><br>可能某些 V2Ray 客户端的选项或描述略有不同，但事实上，此脚本显示的 V2Ray 配置信息已经足够详细，由于客户端的不同，请对号入座。</p>
+<h2 id="反馈问题"><a href="#反馈问题" class="headerlink" title="反馈问题"></a>反馈问题</h2><p>请先查阅：<a href="https://233v2.com/post/10/" target="_blank" rel="noopener">V2Ray 一键安装脚本疑问集合</a><br>Telegram 群组：<a href="https://t.me/blog233" target="_blank" rel="noopener"> https://t.me/blog233 </a><br>Github 反馈：<a href="https://github.com/233boy/v2ray/issues" target="_blank" rel="noopener"> https://github.com/233boy/v2ray/issues </a><br>任何有关于 V2Ray 的问题，请自行到 V2Ray 官方反馈。<br><strong>目前只支持配置一个 V2Ray 账号…一个 Shadowsocks 账号。。不支持 SSR。。</strong><br><strong>使用国际大厂的 VPS，请自行在安全组 (防火墙) 开放端口和 UDP 协议 (如果你要使用含有 mKCP 的传输协议)</strong></p>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>为了避免由于不可抗拒的原因所造成本人主动删除脚本，所以建议请将本脚本 Fork 一份<br>备份地址：<a href="https://github.com/233boy/v2ray/fork" target="_blank" rel="noopener"> https://github.com/233boy/v2ray/fork </a><br>安装方法，确保你已经 Fork 了脚本，将 233boy 修改成你的 Github 用户名</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;233boy&#x2F;v2ray -b master</span></pre></td></tr><tr><td class="code"><pre><span class="line">cd v2ray</span></pre></td></tr><tr><td class="code"><pre><span class="line">chmod +x install.sh</span></pre></td></tr><tr><td class="code"><pre><span class="line">.&#x2F;install.sh local</span></pre></td></tr></table></figure>
+
+<p>如果提示 git 命令不可用，那就自己安装咯，不会安装啊？我也不知道啊。哈哈</p>
+<h2 id="及时更新脚本"><a href="#及时更新脚本" class="headerlink" title="及时更新脚本"></a>及时更新脚本</h2><p>为确保你能愉快使用，请留意使用 <code>v2ray update.sh</code> 命令来更新管理脚本。<br>脚本难免会有 BUG，所以建议有空就检查一下更新情况。</p>
+<h2 id="关注脚本最新动态"><a href="#关注脚本最新动态" class="headerlink" title="关注脚本最新动态"></a>关注脚本最新动态</h2><p>本人会在 <a href="https://t.me/blog2333" target="_blank" rel="noopener">本站 Telegram 公告频道</a> 推送脚本最新动态相关，如果你使用 Telegram 的话，可以关注一下。<br>当然啦，你也可以加入 <a href="https://t.me/blog233" target="_blank" rel="noopener">本站 Telegram 群组</a> 来吹水。</p>
+<h2 id="资助-V2Ray"><a href="#资助-V2Ray" class="headerlink" title="资助 V2Ray"></a>资助 V2Ray</h2><p>如果你觉得 V2Ray 很好用，能解决你的某些问题，请考虑 <a href="https://www.v2ray.com/chapter_00/02_donate.html" target="_blank" rel="noopener">资助 V2Ray 发展 </a>。</p>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>V2Ray：<a href="https://www.v2ray.com/" target="_blank" rel="noopener"> https://www.v2ray.com/</a></p>
+<h2 id="版权"><a href="#版权" class="headerlink" title="版权"></a>版权</h2><p>此脚本使用 GPL v3 协议共享。</p>
+<h2 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h2><p>如果觉得脚本好用，记得分享给你的其他小伙伴们哦~</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>请勿违反国家法律法规，否则后果自负！<br>使用一键脚本并不会害了你，并且会让你节省大量的时间，工具从来都是为了更快的解决问题。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">V2ray</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/04/%E5%AE%89%E8%A3%85V2ray/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码格式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -179,6 +384,8 @@
 <p>查看代码格式</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"hello world"</span>&lt;&lt;<span class="built_in">endl</span>;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
+<p><strong>:</strong> H4V9Hk5yuN23OCi3ec</p>
+<p> n28l0rIC57Vi4iKUvL </p>
 
       
 
@@ -321,16 +528,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
@@ -490,6 +697,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">v2ray bbr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">V2ray</a>
               </li>
             
             <div class="clearfix"></div>
