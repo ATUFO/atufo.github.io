@@ -7,65 +7,7 @@
     error: '复制错误',
     noSupport: '浏览器不支持'
   }
-} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ATUFO</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">6</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">5</span></a></div></div></div><nav id="nav" style="background-image: url(https://bing.lylares.com/simg/large/007Tv3Vmly1g9hobnjb1cj31hc0u0n61.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">ATUFO的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="site-info"><div id="site-title">ATUFO的博客</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/05/git%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/">git使用入门</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-05</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/git/">git</a></span><div class="content"><p>[toc]</p>
-<h3 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h3><p>Git是目前世界上最先进的分布式版本控制系统。</p>
-<p>如果你用Microsoft Word写过长篇大论，那你一定有这样的经历：</p>
-<p>想删除一个段落，又怕将来想恢复找不回来怎么办？有办法，先把当前文件“另存为……”一个新的Word文件，再接着改，改到一定程度，再“另存为……”一个新文件，这样一直改下去，最后你的Word文档变成了这样：</p>
-<p><img src="https://www.liaoxuefeng.com/files/attachments/918921393733152/0" alt="lots-of-docs"></p>
-<p>过了一周，你想找回被删除的文字，但是已经记不清删除前保存在哪个文件里了，只好一个一个文件去找，真麻烦。</p>
-<p>看着一堆乱七八糟的文件，想保留最新的一个，然后把其他的删掉，又怕哪天会用上，还不敢删，真郁闷。</p>
-<p>更要命的是，有些部分需要你的财务同事帮助填写，于是你把文件Copy到U盘里给她（也可能通过Email发送一份给她），然后，你继续修改Word文件。一天后，同事再把Word文件传给你，此时，你必须想想，发给她之后到你收到她的文件期间，你作了哪些改动，得把你的改动和她的部分合并，真困难。</p>
-<p>于是你想，如果有一个软件，不但能自动帮我记录每次文件的改动，还可以让同事协作编辑，这样就不用自己管理一堆类似的文件了，也不需要把文件传来传去。如果想查看某次改动，只需要在软件里瞄一眼就可以，岂不是很方便？</p>
-<p>这个软件用起来就应该像这个样子，能记录每次文件的改动：</p>
-<table>
-<thead>
-<tr>
-<th align="left">版本</th>
-<th align="left">文件名</th>
-<th align="left">用户</th>
-<th align="left">说明</th>
-<th align="left">日期</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">service.doc</td>
-<td align="left">张三</td>
-<td align="left">删除了软件服务条款5</td>
-<td align="left">7/12 10:38</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">service.doc</td>
-<td align="left">张三</td>
-<td align="left">增加了License人数限制</td>
-<td align="left">7/12 18:09</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">service.doc</td>
-<td align="left">李四</td>
-<td align="left">财务部门调整了合同金额</td>
-<td align="left">7/13 9:51</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">service.doc</td>
-<td align="left">张三</td>
-<td align="left">延长了免费升级周期</td>
-<td align="left">7/14 15:17</td>
-</tr>
-</tbody></table>
-<p>这样，你就结束了手动管理多个“版本”的史前时代，进入到版本控制的20世纪。</p>
-<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><h4 id="方式一-克隆仓库"><a href="#方式一-克隆仓库" class="headerlink" title="方式一    克隆仓库"></a>方式一    克隆仓库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone git@github.com:name/res.git</span></pre></td></tr></table></figure>
-<p>这种 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> 的方式需要配置ssh密钥，不过不用在每次提交时输入密码，比较方便</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ATUFO/blogBackup.git</span></pre></td></tr></table></figure>
-
-<p>这种方式需要输入密码。</p>
-<h4 id="方式二-初始化本地化仓库，然后加入远程仓库"><a href="#方式二-初始化本地化仓库，然后加入远程仓库" class="headerlink" title="方式二    初始化本地化仓库，然后加入远程仓库"></a>方式二    初始化本地化仓库，然后加入远程仓库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git init #初始化仓库</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git add . #添加本地文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">git commit -m "first commit" #提交信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:name/res.git  #添加远程仓库</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">git push -u origin master #推到远程仓库</span></pre></td></tr></table></figure>
-
-<h4 id="方式三-初始化本地化仓库，然后加入远程仓库"><a href="#方式三-初始化本地化仓库，然后加入远程仓库" class="headerlink" title="方式三    初始化本地化仓库，然后加入远程仓库"></a>方式三    初始化本地化仓库，然后加入远程仓库</h4><p>和方式二差不多，只是这种凡是针对于已有的本地仓库。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:name/res.git </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git push -u origin master</span></pre></td></tr></table></figure></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/04/%E5%AE%89%E8%A3%85bbr-%E5%8A%A0%E9%80%9F%E7%BD%91%E7%BB%9C/">安装bbr,加速网络</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-04</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/v2ray/">v2ray</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/bbr/">bbr</a></span><div class="content"><p><a href="https://www.bwgyhw.cn/bandwagonhost-bbr-speed-up/" target="_blank" rel="noopener">来源</a></p>
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">ATUFO</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">6</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">5</span></a></div></div></div><nav id="nav" style="background-image: url(https://bing.lylares.com/simg/large/007Tv3Vmly1g9hobnjb1cj31hc0u0n61.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">ATUFO的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="site-info"><div id="site-title">ATUFO的博客</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/05/git%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/">git使用入门</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-05</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/git/">git</a></span><div class="content"><h3 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h3><p>Git是目前世界上最先进的分布式版本控制系统。</p></div><a class="more" href="/2019/12/05/git%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/04/%E5%AE%89%E8%A3%85bbr-%E5%8A%A0%E9%80%9F%E7%BD%91%E7%BB%9C/">安装bbr,加速网络</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-04</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/v2ray/">v2ray</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/bbr/">bbr</a></span><div class="content"><p><a href="https://www.bwgyhw.cn/bandwagonhost-bbr-speed-up/" target="_blank" rel="noopener">来源</a></p>
 <h2 id="什么是bbr"><a href="#什么是bbr" class="headerlink" title="什么是bbr"></a><strong>什么是bbr</strong></h2><p>bbr是谷歌开源的一个TCP拥塞控制算法，并且完全开源，谷歌bbr项目地址：<a href="https://github.com/google/bbr。" target="_blank" rel="noopener">https://github.com/google/bbr。</a></p>
 <p>bbr的目的就是尽量跑满带宽，通过控制算法，将带宽利用到最大，并且已经提交至Linux内核，开启非常方便，项目也一直在维护调优，加速效果好，稳定。</p>
 <h2 id="搬瓦工自带bbr的系统"><a href="#搬瓦工自带bbr的系统" class="headerlink" title="搬瓦工自带bbr的系统"></a><strong>搬瓦工自带bbr的系统</strong></h2><p><strong>搬瓦工的默认系统是自带bbr加速的</strong>，也就是说如果你新买了一台搬瓦工vps，那么你的搬瓦工是默认自带bbr的。查看你的搬瓦工vps是什么系统，可以在kiwivm控制面板里的Main controls里查看，搬瓦工如何登陆kiwivm查看本站之前的教程：</p>

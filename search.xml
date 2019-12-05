@@ -3,8 +3,9 @@
   <entry>
     <title>git使用入门</title>
     <url>/2019/12/05/git%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h3 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h3><p>Git是目前世界上最先进的分布式版本控制系统。</p>
+    <content><![CDATA[<h3 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h3><p>Git是目前世界上最先进的分布式版本控制系统。</p>
+ <a id="more"></a> 
+
 <p>如果你用Microsoft Word写过长篇大论，那你一定有这样的经历：</p>
 <p>想删除一个段落，又怕将来想恢复找不回来怎么办？有办法，先把当前文件“另存为……”一个新的Word文件，再接着改，改到一定程度，再“另存为……”一个新文件，这样一直改下去，最后你的Word文档变成了这样：</p>
 <p><img src="https://www.liaoxuefeng.com/files/attachments/918921393733152/0" alt="lots-of-docs"></p>
