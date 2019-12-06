@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在配置过wsl的VScode中配置PYthon环境</title>
+    <url>/2019/12/06/%E5%9C%A8%E9%85%8D%E7%BD%AE%E8%BF%87wsl%E7%9A%84VScode%E4%B8%AD%E9%85%8D%E7%BD%AEPYthon%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p>liunx的shell不是Windows能比的，但是windows推出了WSL</p>
+<h3 id="什么是wsl"><a href="#什么是wsl" class="headerlink" title="什么是wsl"></a>什么是wsl</h3><p> Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的Ubuntu 14.04 “Trusty Tahr”映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。 </p>
+<h3 id="配置python环境"><a href="#配置python环境" class="headerlink" title="配置python环境"></a>配置python环境</h3><p>一般来说在VScode中选择了wsl作为默认终端。如果想使用windows下的python，可谓是有点麻烦了。</p>
+<p>那么下面介绍下如何操作。</p>
+<ul>
+<li><p>配置 <strong>setting.json</strong></p>
+<p>这个文件在 <strong>.vscode</strong> 目录下。</p>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="attr">"terminal.integrated.shell.windows"</span>: <span class="string">"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这样每次打开这个项目就会使用 <strong>powershell</strong> 作为终端。</p>
+<ul>
+<li>安装python插件</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>vscode</tag>
+        <tag>python</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大型网站架构技术演进</title>
     <url>/2019/12/05/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B/</url>
     <content><![CDATA[<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>本文以淘宝作为例子，介绍从一百个到千万级并发情况下服务端的架构的演进过程，同时列举出每个演进阶段会遇到的相关技术，让大家对架构的演进有一个整体的认知，文章最后汇总了一些架构设计的原则。</p>
