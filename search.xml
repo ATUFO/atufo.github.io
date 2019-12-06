@@ -4,6 +4,8 @@
     <title>在配置过wsl的VScode中配置PYthon环境</title>
     <url>/2019/12/06/%E5%9C%A8%E9%85%8D%E7%BD%AE%E8%BF%87wsl%E7%9A%84VScode%E4%B8%AD%E9%85%8D%E7%BD%AEPYthon%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p>liunx的shell不是Windows能比的，但是windows推出了WSL</p>
+<a id="more"></a>
+
 <h3 id="什么是wsl"><a href="#什么是wsl" class="headerlink" title="什么是wsl"></a>什么是wsl</h3><p> Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的Ubuntu 14.04 “Trusty Tahr”映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。 </p>
 <h3 id="配置python环境"><a href="#配置python环境" class="headerlink" title="配置python环境"></a>配置python环境</h3><p>一般来说在VScode中选择了wsl作为默认终端。如果想使用windows下的python，可谓是有点麻烦了。</p>
 <p>那么下面介绍下如何操作。</p>
