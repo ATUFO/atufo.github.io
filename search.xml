@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>nginx+php-fpm搭建wordpress</title>
+    <url>/2020/01/08/nginx-php-fpm%E6%90%AD%E5%BB%BAwordpress/</url>
+    <content><![CDATA[<h2 id="第一步安装nginx"><a href="#第一步安装nginx" class="headerlink" title="第一步安装nginx"></a>第一步安装nginx</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>php</tag>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown画图</title>
     <url>/2019/12/13/markdown%E7%94%BB%E5%9B%BE/</url>
     <content><![CDATA[<p>Typora本身支持flow、mermaid语言绘制时序图、甘特图、流程图等等。若要你的博客也支持解析渲染这些语言描绘的图表，则需要查看博客框架是否支持，然后进行相关配置。<br>以Hexo为例，原生不支持，但是可以通过安装插件实现以上图表的显示。</p>
