@@ -3,7 +3,9 @@
   <entry>
     <title>nginx+php-fpm搭建wordpress</title>
     <url>/2020/01/08/nginx-php-fpm%E6%90%AD%E5%BB%BAwordpress/</url>
-    <content><![CDATA[<h2 id="第一步安装nginx"><a href="#第一步安装nginx" class="headerlink" title="第一步安装nginx"></a>第一步安装nginx</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="第一步安装nginx"><a href="#第一步安装nginx" class="headerlink" title="第一步安装nginx"></a>第一步安装nginx</h2><a id="more"></a>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
