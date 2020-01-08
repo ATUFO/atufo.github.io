@@ -4,14 +4,12 @@
     <title>nginx+php-fpm搭建wordpress</title>
     <url>/2020/01/08/nginx-php-fpm%E6%90%AD%E5%BB%BAwordpress/</url>
     <content><![CDATA[<p>先看看效果图</p>
-<p><img src="https://raw.githubusercontent.com/atufo/picture-store/master/img/Snipaste_2020-01-08_12-22-37.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/atufo/picture-store/img/20200108125938.png" alt=""></p>
 <a id="more"></a>
 
 
 
-<h2 id="第一步-安装nginx"><a href="#第一步-安装nginx" class="headerlink" title="第一步 安装nginx"></a>第一步 安装nginx</h2><!-- more -->
-
-<p>首先下载nginx源码<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx 下载</a></p>
+<h2 id="第一步-安装nginx"><a href="#第一步-安装nginx" class="headerlink" title="第一步 安装nginx"></a>第一步 安装nginx</h2><p>首先下载nginx源码<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx 下载</a></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.17.7.tar.gz</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">tar -xf nginx-1.17.7.tar.gz</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入目录 nginx-1.17.7</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd  nginx-1.17.7</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> configure</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">./configure</span></pre></td></tr></table></figure>
 
 <p>然后注意，在生成的<strong>objs/Makefile</strong>中去掉 <strong>-Werror</strong> 否则可能编译出错</p>
