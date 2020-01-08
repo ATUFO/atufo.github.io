@@ -3,10 +3,30 @@
   <entry>
     <title>nginx+php-fpm搭建wordpress</title>
     <url>/2020/01/08/nginx-php-fpm%E6%90%AD%E5%BB%BAwordpress/</url>
-    <content><![CDATA[<h2 id="第一步安装nginx"><a href="#第一步安装nginx" class="headerlink" title="第一步安装nginx"></a>第一步安装nginx</h2><a id="more"></a>
+    <content><![CDATA[<p>先看看效果图</p>
+<p><img src="" alt="">)<img src="D:%5Cblog_git%5Chexo%5Csource_posts%5Cnginx-php-fpm%E6%90%AD%E5%BB%BAwordpress.assets%5Cimage-20200108122412271.png" alt=""></p>
+<a id="more"></a>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
 
+
+<h2 id="第一步-安装nginx"><a href="#第一步-安装nginx" class="headerlink" title="第一步 安装nginx"></a>第一步 安装nginx</h2><!-- more -->
+
+<p>首先下载nginx源码<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx 下载</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.17.7.tar.gz</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">tar -xf nginx-1.17.7.tar.gz</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入目录 nginx-1.17.7</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd  nginx-1.17.7</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> configure</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">./configure</span></pre></td></tr></table></figure>
+
+<p>然后注意，在生成的<strong>objs/Makefile</strong>中去掉 <strong>-Werror</strong> 否则可能编译出错</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make</span></pre></td></tr><tr><td class="code"><pre><span class="line">make install</span></pre></td></tr></table></figure>
+
+<p>最后会安装在 <strong>/usr/local/nginx</strong>中。</p>
+<h2 id="第二步-安装-php-fpm"><a href="#第二步-安装-php-fpm" class="headerlink" title="第二步 安装 php-fpm"></a>第二步 安装 php-fpm</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt install php-fpm</span></pre></td></tr></table></figure>
+
+<p>然后修改监听方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">php-fpm7.2 -t</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">输出</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">[08-Jan-2020 12:03:14] NOTICE: configuration file /etc/php/7.2/fpm/php-fpm.conf test is successful</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">其中/etc/php/7.2/fpm/为配置文件路径。修改该路径下pool.d/www.conf,添加</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">listen = localhost:9000</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">或</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">listen = unix:/run/php-fpm.sock</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">重启 php-fpm</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">/etc/init.d/php7.2-fpm restart</span></pre></td></tr></table></figure>
+
+<h2 id="第三步-修改nginx-conf-连接nginx与php-fpm"><a href="#第三步-修改nginx-conf-连接nginx与php-fpm" class="headerlink" title="第三步 修改nginx.conf,连接nginx与php-fpm"></a>第三步 修改nginx.conf,连接nginx与php-fpm</h2><p>上面的<strong>listen</strong>部分就是二者沟通的桥梁，接下来我们就需要配置<strong>nginx.conf</strong>来让nginx找到php-fpm</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">在server中添加</span></pre></td></tr><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">             root           /var/www/html/wordpress; #wordpress路径在第四步中会说到</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">             fastcgi_pass   localhost:9000;</span></pre></td></tr><tr><td class="code"><pre><span class="line">             fastcgi_index  index.php;</span></pre></td></tr><tr><td class="code"><pre><span class="line">             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span></pre></td></tr><tr><td class="code"><pre><span class="line">             include        fastcgi_params;</span></pre></td></tr><tr><td class="code"><pre><span class="line">       &#125;</span></pre></td></tr></table></figure>
+
+<h2 id="第四步-下载wordpress"><a href="#第四步-下载wordpress" class="headerlink" title="第四步 下载wordpress"></a>第四步 下载wordpress</h2><p>【】</p>
 ]]></content>
       <tags>
         <tag>nginx</tag>
